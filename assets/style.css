@@ -1,20 +1,31 @@
+/* Local heading subset derived from LXGW WenKai v1.521 under SIL OFL 1.1. */
+@font-face {
+  font-family: "Homepage Kai";
+  src: url("kai-headings.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
 :root {
   color-scheme: light;
-  --background: #f7faf8;
+  --background: #f0fafb;
   --surface: #fff;
-  --ink: #152521;
-  --muted: #425852;
-  --accent: #155650;
-  --deep: #133b37;
-  --line: #d5e2dc;
-  --tint: #e8f2ed;
-  --serif: Georgia, "Times New Roman", serif;
-  --sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --ink: #182e4c;
+  --muted: #42546c;
+  --accent: #1b3d61;
+  --line: #d7dfeb;
+  --tint: #eaf0f8;
+  --interests-background: #d8e8f4;
+  --latin-serif: "Times New Roman", Times, "Liberation Serif";
+  --songti: "Songti SC", STSong, SimSun, "Noto Serif CJK SC", "Source Han Serif SC";
+  --body-font: var(--latin-serif), var(--songti), serif;
+  --heading-font: var(--body-font);
 }
 
 :root[lang="zh-Hans"] {
-  --serif: "Songti SC", "Noto Serif CJK SC", "Source Han Serif SC", SimSun, Georgia, serif;
-  --sans: system-ui, -apple-system, "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+  --kaiti: "Kaiti SC", STKaiti, KaiTi, "KaiTi_GB2312", "AR PL UKai CN", "Homepage Kai";
+  --heading-font: var(--latin-serif), var(--kaiti), var(--songti), serif;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -24,7 +35,7 @@ body {
   margin: 0;
   background: var(--surface);
   color: var(--ink);
-  font: 1rem/1.65 var(--sans);
+  font: 1rem/1.65 var(--body-font);
   overflow-wrap: anywhere;
 }
 
@@ -44,19 +55,20 @@ a:focus-visible {
 h1, h2, h3, p, dl, dd, ol, ul { margin: 0; }
 
 h1, h2, h3 {
+  font-family: var(--heading-font);
   line-height: 1.24;
   text-wrap: balance;
 }
 
-h1, h2 { font-family: var(--serif); }
+cite, em { font-style: italic; }
 
 h1 {
-  font-size: clamp(3.7rem, 8.2vw, 6.3rem);
+  font-size: clamp(2.9rem, 6.5vw, 5.2rem);
   font-weight: 500;
-  letter-spacing: -.065em;
+  letter-spacing: -.035em;
 }
 
-:lang(zh-Hans) h1 { letter-spacing: -.04em; }
+:lang(zh-Hans) h1 { letter-spacing: -.02em; }
 
 h2 {
   font-size: clamp(1.9rem, 3.7vw, 2.65rem);
@@ -86,6 +98,20 @@ h3 { font-size: clamp(1.06rem, 2vw, 1.27rem); }
 .site-header {
   background: var(--background);
   border-bottom: 1px solid var(--line);
+}
+
+.site-banner {
+  background: #e6edf2;
+}
+
+.site-banner img {
+  display: block;
+  width: 100%;
+  height: clamp(10rem, 25vw, 22rem);
+  object-fit: cover;
+  object-position: 50% 64%;
+  filter: contrast(1.08) brightness(.93) saturate(.86);
+  opacity: .96;
 }
 
 .header-inner, .footer-inner {
@@ -137,10 +163,10 @@ h3 { font-size: clamp(1.06rem, 2vw, 1.27rem); }
 
 .hero-inner {
   display: grid;
-  grid-template-columns: minmax(0, 1.18fr) minmax(0, .82fr);
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, .7fr);
   align-items: center;
-  gap: clamp(2rem, 6vw, 5rem);
-  padding-block: clamp(3.1rem, 7vw, 6.2rem);
+  gap: clamp(1.5rem, 5vw, 4rem);
+  padding-block: clamp(2rem, 4.6vw, 3.6rem);
 }
 
 .role {
@@ -163,56 +189,33 @@ h3 { font-size: clamp(1.06rem, 2vw, 1.27rem); }
   font-size: clamp(1rem, 1.5vw, 1.12rem);
 }
 
-.profile-links { margin-top: 1.35rem; gap: .65rem; }
+.profile-links { margin-top: .8rem; gap: .25rem 1.2rem; }
 
 .profile-links a {
   display: inline-flex;
   align-items: center;
-  min-height: 2.55rem;
-  padding: .32rem .73rem;
-  border: 1px solid var(--line);
-  border-radius: .4rem;
-  background: var(--surface);
-  font-size: .9rem;
-  font-weight: 640;
-  text-decoration: none;
+  min-height: 2.75rem;
 }
-
-.profile-links a:hover { background: var(--tint); border-color: var(--accent); }
 
 .research-interests {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
-  background: var(--deep);
-  color: #f3fbf7;
-  border-radius: .85rem;
-  padding: clamp(1.5rem, 4vw, 2.7rem);
-}
-
-.research-interests::before {
-  position: absolute;
-  z-index: -1;
-  inset: 0;
-  background: repeating-radial-gradient(ellipse at 110% 0%, transparent 0 1.25rem, #9fc9b51c 1.28rem 1.34rem);
-  content: "";
-  pointer-events: none;
+  background: var(--interests-background);
+  border-inline-start: 2px solid #9bb6cc;
+  padding: clamp(1.2rem, 2.8vw, 2rem);
 }
 
 .research-interests h2 {
-  margin-bottom: .65rem;
-  font-size: clamp(1.65rem, 2.7vw, 2.15rem);
+  margin-bottom: .62rem;
+  font-size: clamp(1.42rem, 2.2vw, 1.8rem);
 }
 
 .interests-list {
   padding: 0;
-  color: #e3f0e9;
   list-style: none;
 }
 
-.interests-list li { padding-block: .46rem; }
-.interests-list li + li { border-top: 1px solid #b5d7ca45; }
-.interests-list li:last-child { padding-bottom: 0; }
+:root[lang="en"] .interests-list { font-style: italic; }
+
+.interests-list li + li { margin-top: .25rem; }
 
 .section {
   display: grid;
@@ -278,6 +281,8 @@ h3 { font-size: clamp(1.06rem, 2vw, 1.27rem); }
 
 @media (max-width: 42rem) {
   .wrap { width: min(100% - 2rem, 72rem); }
+  .site-banner img { object-position: 56% 62%; }
+
   .header-inner {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
